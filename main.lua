@@ -1,10 +1,5 @@
 -- GLOBAL VARIABLES --
 local player = game.Players.LocalPlayer
-local Players = game:GetService('Players')
-local RunService = game:GetService("RunService")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local vim = game:GetService("VirtualInputManager")
-local runService = game:GetService("RunService")
 -- GLOBAL VARIABLES --
 
 -- MAIN GUI --
@@ -30,6 +25,7 @@ local idLabel = Instance.new("TextLabel")
 local joinDateLabel = Instance.new("TextLabel")
 local inventoryLabel = Instance.new("TextLabel")
 local StealAudio = Instance.new("TextButton")
+local SpamCall = Instance.new("TextButton")
 local Buttons = Instance.new("Frame")
 local MainFrame = Instance.new("Frame")
 local QuickTpFrame = Instance.new("Frame")
@@ -41,10 +37,11 @@ local View = Instance.new("TextButton")
 local AntiSlow = Instance.new("TextButton")
 local ForceReset = Instance.new("TextButton")
 local AntiStomp = Instance.new("TextButton")
-local AutoBlock = Instance.new("TextButton")
+local Bring = Instance.new("TextButton")
 local AntiLock = Instance.new("TextButton")
 local Fly = Instance.new("TextButton")
 local Bag = Instance.new("TextButton")
+local AutoEat = Instance.new("TextButton")
 local AntiLockSettings = Instance.new("TextButton")
 local AntiLockMethod = Instance.new("TextButton")
 local NoClip = Instance.new("TextButton")
@@ -365,7 +362,7 @@ idLabel.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 idLabel.BorderSizePixel = 0
 idLabel.Position = UDim2.new(0.072641857, 0, 0.519756854, 0)
 idLabel.Size = UDim2.new(0, 115, 0, 26)
-idLabel.Font = Enum.Font.SourceSans
+idLabel.Font = Enum.Font.GothamBlack
 idLabel.Text = "ID: Nil"
 idLabel.TextColor3 = Color3.fromRGB(72, 72, 72)
 idLabel.TextSize = 14.000
@@ -376,10 +373,11 @@ joinDateLabel.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 joinDateLabel.BorderSizePixel = 0
 joinDateLabel.Position = UDim2.new(0.072641857, 0, 0.633550763, 0)
 joinDateLabel.Size = UDim2.new(0, 115, 0, 26)
-joinDateLabel.Font = Enum.Font.SourceSans
+joinDateLabel.Font = Enum.Font.GothamBlack
 joinDateLabel.Text = "Join Date: Nil"
 joinDateLabel.TextColor3 = Color3.fromRGB(72, 72, 72)
 joinDateLabel.TextSize = 14.000
+joinDateLabel.TextScaled = true
 
 inventoryLabel.Name = "inventoryLabel"
 inventoryLabel.Parent = SideInfo
@@ -387,7 +385,7 @@ inventoryLabel.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 inventoryLabel.BorderSizePixel = 0
 inventoryLabel.Position = UDim2.new(0.072641857, 0, 0.737304032, 0)
 inventoryLabel.Size = UDim2.new(0, 115, 0, 26)
-inventoryLabel.Font = Enum.Font.SourceSans
+inventoryLabel.Font = Enum.Font.GothamBlack
 inventoryLabel.Text = "Inventory: Nil"
 inventoryLabel.TextColor3 = Color3.fromRGB(72, 72, 72)
 inventoryLabel.TextSize = 14.000
@@ -398,12 +396,24 @@ StealAudio.Parent = SideInfo
 StealAudio.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 StealAudio.BorderSizePixel = 0
 StealAudio.Position = UDim2.new(0.072641857, 0, 0.851063848, 0)
-StealAudio.Size = UDim2.new(0, 114, 0, 29)
+StealAudio.Size = UDim2.new(0, 114, 0, 18)
 StealAudio.AutoButtonColor = false
 StealAudio.Font = Enum.Font.GothamBlack
 StealAudio.Text = "Steal Audio"
 StealAudio.TextColor3 = Color3.fromRGB(255, 255, 255)
 StealAudio.TextSize = 14.000
+
+SpamCall.Name = "spamCall"
+SpamCall.Parent = SideInfo
+SpamCall.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+SpamCall.BorderSizePixel = 0
+SpamCall.Position = UDim2.new(0.072641857, 0, 0.919573857, 0)
+SpamCall.Size = UDim2.new(0, 114, 0, 18)
+SpamCall.AutoButtonColor = false
+SpamCall.Font = Enum.Font.GothamBlack
+SpamCall.Text = "Spam Call: Off"
+SpamCall.TextColor3 = Color3.fromRGB(255, 255, 255)
+SpamCall.TextSize = 14.000
 
 Buttons.Name = "Buttons"
 Buttons.Parent = SwagmodeFrame
@@ -489,16 +499,16 @@ AntiStomp.Text = "No Stomp: Off"
 AntiStomp.TextColor3 = Color3.fromRGB(255, 255, 255)
 AntiStomp.TextSize = 14.000
 
-AutoBlock.Name = "AutoBlock"
-AutoBlock.Parent = MainFrame
-AutoBlock.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-AutoBlock.BorderSizePixel = 0
-AutoBlock.Position = UDim2.new(0.677926719, 0, 0.762864709, 0)
-AutoBlock.Size = UDim2.new(0, 94, 0, 46)
-AutoBlock.Font = Enum.Font.GothamBlack
-AutoBlock.Text = "Auto Block: Off"
-AutoBlock.TextColor3 = Color3.fromRGB(255, 255, 255)
-AutoBlock.TextSize = 14.000
+Bring.Name = "Bring"
+Bring.Parent = MainFrame
+Bring.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+Bring.BorderSizePixel = 0
+Bring.Position = UDim2.new(0.677926719, 0, 0.762864709, 0)
+Bring.Size = UDim2.new(0, 94, 0, 46)
+Bring.Font = Enum.Font.GothamBlack
+Bring.Text = "Bring"
+Bring.TextColor3 = Color3.fromRGB(255, 255, 255)
+Bring.TextSize = 14.000
 
 View.Name = "View"
 View.Parent = MainFrame
@@ -554,6 +564,17 @@ Bag.Font = Enum.Font.GothamBlack
 Bag.Text = "Bag"
 Bag.TextColor3 = Color3.fromRGB(255, 255, 255)
 Bag.TextSize = 14.000
+
+AutoEat.Name = "AutoEat"
+AutoEat.Parent = MainFrame
+AutoEat.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+AutoEat.BorderSizePixel = 0
+AutoEat.Position = UDim2.new(0.0218890235, 0, 0.762864709, 0)
+AutoEat.Size = UDim2.new(0, 94, 0, 46)
+AutoEat.Font = Enum.Font.GothamBlack
+AutoEat.Text = "Auto Heal: Off"
+AutoEat.TextColor3 = Color3.fromRGB(255, 255, 255)
+AutoEat.TextSize = 14.000
 
 AntiLockSettings.Name = "AntiLockSettings"
 AntiLockSettings.Parent = ScriptSettingsFrame
@@ -645,21 +666,16 @@ SwagmodeFrame.Active = true
 SwagmodeFrame.Draggable = true
 -- PROPERTIES --
 
--- GUI STYLING ^^^ --
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
--- MAIN SCRIPTS --
-
 -- SAFE ZONE --
 local function createVoidBlock()
-    -- Create a new part
     local voidBlock = Instance.new("Part")
-    voidBlock.Size = Vector3.new(50, 1, 50)        -- Set size of the block
-    voidBlock.Position = Vector3.new(0, -300, 0)   -- Set position in the void
-    voidBlock.Anchored = true                      -- Keep the block in place
-    voidBlock.CanCollide = true                    -- Prevent collisions if desired
-    voidBlock.BrickColor = BrickColor.new("Brown") -- Set color (optional)
-    voidBlock.Material = Enum.Material.Brick       -- Make it neon for visibility (optional)
-    voidBlock.Parent = workspace                   -- Parent the block to the workspace
+    voidBlock.Size = Vector3.new(50, 1, 50)
+    voidBlock.Position = Vector3.new(0, -300, 0)
+    voidBlock.Anchored = true
+    voidBlock.CanCollide = true
+    voidBlock.BrickColor = BrickColor.new("Brown")
+    voidBlock.Material = Enum.Material.Brick
+    voidBlock.Parent = workspace
 end
 -- SAFE ZONE --
 
@@ -685,68 +701,69 @@ end
 
 -- MOD DETECTED GUI --
 local modScreenGui = Instance.new("ScreenGui")
-    modScreenGui.Parent = game.CoreGui
-    modScreenGui.ResetOnSpawn = false
+modScreenGui.Parent = game.CoreGui
+modScreenGui.ResetOnSpawn = false
 modScreenGui.Enabled = false
 
 local modGuiFrame = Instance.new("Frame")
-    modGuiFrame.Size = UDim2.new(0.3, 0, 0.3, 0)
-    modGuiFrame.Position = UDim2.new(0.35, 0, 0.3, 0)
-    modGuiFrame.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-    modGuiFrame.BorderSizePixel = 0
-    local UICorner = Instance.new("UICorner")
-    UICorner.CornerRadius = UDim.new(0, 10)
-    UICorner.Parent = modGuiFrame
-    modGuiFrame.Parent = modScreenGui
+modGuiFrame.Size = UDim2.new(0.3, 0, 0.3, 0)
+modGuiFrame.Position = UDim2.new(0.35, 0, 0.3, 0)
+modGuiFrame.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
+modGuiFrame.BorderSizePixel = 0
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 10)
+UICorner.Parent = modGuiFrame
+modGuiFrame.Parent = modScreenGui
 
-    local titleLabel = Instance.new("TextLabel")
-    titleLabel.Size = UDim2.new(1, 0, 0.3, 0)
-    titleLabel.Position = UDim2.new(0, 0, 0.05, 0)
-    titleLabel.Text = ""
-    titleLabel.Font = Enum.Font.GothamBlack
-    titleLabel.TextSize = 12
-    titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-    titleLabel.TextWrapped = true
-    titleLabel.BackgroundTransparency = 1
-    titleLabel.Parent = modGuiFrame
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Size = UDim2.new(1, 0, 0.3, 0)
+titleLabel.Position = UDim2.new(0, 0, 0.05, 0)
+titleLabel.Text = ""
+titleLabel.Font = Enum.Font.GothamBlack
+titleLabel.TextSize = 12
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.TextWrapped = true
+titleLabel.BackgroundTransparency = 1
+titleLabel.Parent = modGuiFrame
 
-    local yesButton = Instance.new("TextButton")
-    yesButton.Size = UDim2.new(0.4, 0, 0.3, 0)
-    yesButton.Position = UDim2.new(0.05, 0, 0.60, 0)
-    yesButton.Text = "Yes"
-    yesButton.Font = Enum.Font.GothamBlack
-    yesButton.TextSize = 18
-    yesButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    yesButton.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
-    yesButton.BorderSizePixel = 0
-    local UICorner = Instance.new("UICorner")
-    UICorner.CornerRadius = UDim.new(0, 5)
-    UICorner.Parent = yesButton
-    yesButton.Parent = modGuiFrame
+local yesButton = Instance.new("TextButton")
+yesButton.Size = UDim2.new(0.4, 0, 0.3, 0)
+yesButton.Position = UDim2.new(0.05, 0, 0.60, 0)
+yesButton.Text = "Yes"
+yesButton.Font = Enum.Font.GothamBlack
+yesButton.TextSize = 18
+yesButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+yesButton.BackgroundColor3 = Color3.fromRGB(50, 150, 50)
+yesButton.BorderSizePixel = 0
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 5)
+UICorner.Parent = yesButton
+yesButton.Parent = modGuiFrame
 
-    local noButton = Instance.new("TextButton")
-    noButton.Size = UDim2.new(0.4, 0, 0.3, 0)
-    noButton.Position = UDim2.new(0.55, 0, 0.60, 0)
-    noButton.Text = "No"
-    noButton.Font = Enum.Font.GothamBlack
-    noButton.TextSize = 18
-    noButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-    noButton.BackgroundColor3 = Color3.fromRGB(150, 50, 50) -- Red color for No
-    noButton.BorderSizePixel = 0
-    local UICorner = Instance.new("UICorner")
-    UICorner.CornerRadius = UDim.new(0, 5)
-    UICorner.Parent = noButton
-    noButton.Parent = modGuiFrame
+local noButton = Instance.new("TextButton")
+noButton.Size = UDim2.new(0.4, 0, 0.3, 0)
+noButton.Position = UDim2.new(0.55, 0, 0.60, 0)
+noButton.Text = "No"
+noButton.Font = Enum.Font.GothamBlack
+noButton.TextSize = 18
+noButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+noButton.BackgroundColor3 = Color3.fromRGB(150, 50, 50) -- Red color for No
+noButton.BorderSizePixel = 0
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 5)
+UICorner.Parent = noButton
+noButton.Parent = modGuiFrame
 
-    yesButton.MouseButton1Click:Connect(function()
-        player:Kick("Moderator In The Server!")
-    end)
+yesButton.MouseButton1Click:Connect(function()
+    player:Kick("Moderator In The Server!")
+end)
 
-    noButton.MouseButton1Click:Connect(function()
-        modScreenGui.Enabled = false
-        Swagmode.Enabled = true
-        announce("Mod Detector", "You Chose No! Watch Out For Mods And Don't Get Banned!")
-    end)
+noButton.MouseButton1Click:Connect(function()
+    modScreenGui.Enabled = false
+    Swagmode.Enabled = true
+    announce("Mod Detector", "You Chose No! Watch Out For Mods And Don't Get Banned!")
+end)
+-- MOD DETECTED GUI --
 
 -- MOD DETECTION --
 local groupIds = { 10878346, 35074996 }
@@ -832,13 +849,14 @@ end
 -- TARGET PLAYER STUFF --
 
 -- USERNAME FINDER --
-function ShrinkName()
+local function ShrinkName()
     TargetTextbox.FocusLost:Connect(function(enterPressed)
-        if enterPressed then -- Make sure the action is triggered only when Enter is pressed
-            for i, v in pairs(game.Players:GetChildren()) do
+        if enterPressed then
+            for _, v in pairs(game.Players:GetPlayers()) do
                 if (string.sub(string.lower(v.Name), 1, string.len(TargetTextbox.Text)) == string.lower(TargetTextbox.Text)) or
                     (string.sub(string.lower(v.DisplayName), 1, string.len(TargetTextbox.Text)) == string.lower(TargetTextbox.Text)) then
                     TargetTextbox.Text = v.Name
+                    TargetPlayer = v
                     SetPlayerInfo()
                     break
                 end
@@ -850,618 +868,334 @@ end
 ShrinkName()
 -- USERNAME FINDER --
 
--- VIEW PLAYER FUNCTION --
-function view(plr)
-    wait()
-    if game.Players:FindFirstChild(plr) then
-        if game.Players[plr].Character then
-            game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = game.Players:FindFirstChild(plr).Character
-                .HumanoidRootPart
-        end
-    end
-end
+-- LOCAL VARIABLES --
+local flyGuiLoaded = false
+local oldCFrame
+local antiSlowEnabled = false
+local antiStompEnabled = false
+local autoHealEnabled = false
+local hideUserEnabled = false
+-- LOCAL VARIABLES --
 
--- VIEW PLAYER FUNCTION --
-
-------------------------------------
-
--- DECLARE LOCAL VARIABLES --
-mouse = player:GetMouse()
-local guiVisible = true
-local Killing = false
-local Knocking = false
-local savedCFrame
-local teleportCooldown = 0.001
-local Character = player.Character or player.CharacterAdded:Wait()
-local humanoid = Character:FindFirstChildWhichIsA('Humanoid')
-local character = player.Character or player.CharacterAdded:Wait()
-local heartbeatConnection
-local noclipActive = false
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-local humanoidForUnequip = character:FindFirstChildOfClass("Humanoid")
-local antiStompActive = false
-local hideUserActive = false
-local koConnection
-local MaxAutoBlockDistance = 10
-local forbidden = { "Revolver", "Double Barrel SG", "Flamethrower", "Shotgun", "TacticalShotgun", "Sniper", "AA12",
-    "AK47", "AR", "Akimbo SMG", "Deagle", "Drum Glock", "DrumGun", "Famas", "Glock", "Golden AK-47", "Grenade Launcher",
-    "HMinigun", "Homing Launcher", "LMG", "LMinigun", "P90", "PlasmaRifle", "RPG", "Railgun", "Ray Gun", "SCAR-H", "SMG",
-    "SilencerAR", "Silencer", "Tec-9", "UMP", "Vector", "XM8" }
-local blockCooldown = 0.01
-local lastBlockTime = 0
-local autoBlockEnabled = false
-local Clip = true
-local Noclipping = nil
-local connection
-local stompArgs = {
-    [1] = "Stomp"
-}
-local mobileShoot = player:WaitForChild("PlayerGui"):WaitForChild("MainScreenGui"):WaitForChild("MobileShoot")
-local FlyGuiLoaded = false
-local Bagging = false
-local hideUserActive = false
--- DECLARE LOCAL VARIABLES --
-
--- CLICK DETECTORS AND LOCATIONS --
-local maskClickDetector = game:GetService("Workspace").Ignored.Shop.Others["[Mask] - $25"].ClickDetector
-local maskLocation = maskClickDetector.Parent.Head.Position
-
-local knifeClickDetector = game:GetService("Workspace").Ignored.Shop.Others["[Knife] - $125"].ClickDetector
-local knifeLocation = knifeClickDetector.Parent.Head.Position
-
-local batClickDetector = game:GetService("Workspace").Ignored.Shop.Others["[Bat] - $275"].ClickDetector
-local batLocation = batClickDetector.Parent.Head.Position
-
-local bagClickDetector = game:GetService("Workspace").Ignored.Shop.Others["[BrownBag] - $250"].ClickDetector
-local bagLocation = bagClickDetector.Parent.Head.Position
--- CLICK DETECTORS AND LOCATIONS --
-
--- HAS, BUY, PURCHASE TOOLS FUNCTIONS --
-local function hasMask()
-    for _, item in pairs(player.Backpack:GetChildren()) do
-        if item.Name == "[Mask]" then
-            return true
-        end
-    end
-    return false
-end
-
-local function buyMask()
-    wait(0.1)
-    player.Character.HumanoidRootPart.CFrame = CFrame.new(maskLocation)
-    fireclickdetector(maskClickDetector)
-end
-
-local function purchaseMask()
-    while not hasMask() do
-        buyMask()
-        wait(0.2)
-    end
-end
-
+-- BUY ITEMS --
 local function hasKnife()
-    for _, item in pairs(player.Backpack:GetChildren()) do
-        if item.Name == "[Knife]" then
-            return true
-        end
-    end
-    return false
+    local Knife = player.Character:FindFirstChild("[Knife]") or player.Backpack:FindFirstChild("[Knife]")
+    return Knife ~= nil
 end
 
 local function buyKnife()
-    wait(0.1)
+    local knifeClickDetector = game:GetService("Workspace").Ignored.Shop.Others["[Knife] - $125"].ClickDetector
+    local knifeLocation = knifeClickDetector.Parent.Head.Position
+
     player.Character.HumanoidRootPart.CFrame = CFrame.new(knifeLocation)
     fireclickdetector(knifeClickDetector)
+    wait(0.01)
 end
 
 local function purchaseKnife()
     while not hasKnife() do
         buyKnife()
-        wait(0.2)
-    end
-end
-
-local function hasBat()
-    for _, item in pairs(player.Backpack:GetChildren()) do
-        if item.Name == "[Bat]" then
-            return true
-        end
-    end
-    return false
-end
-
-local function buyBat()
-    wait(0.1)
-    player.Character.HumanoidRootPart.CFrame = CFrame.new(batLocation)
-    fireclickdetector(batClickDetector)
-end
-
-local function purchaseBat()
-    while not hasBat() do
-        buyBat()
-        wait(0.2)
+        wait(0.01)
     end
 end
 
 local function hasBag()
-    for _, item in pairs(player.Backpack:GetChildren()) do
-        if item.Name == "[BrownBag]" then
-            return true
-        end
-    end
-    return false
+    local Bag = player.Character:FindFirstChild("[BrownBag]") or player.Backpack:FindFirstChild("[BrownBag]")
+    return Bag ~= nil
 end
 
 local function buyBag()
-    wait(0.1)
+    local bagClickDetector = game:GetService("Workspace").Ignored.Shop.Others["[BrownBag] - $250"].ClickDetector
+    local bagLocation = bagClickDetector.Parent.Head.Position
+
     player.Character.HumanoidRootPart.CFrame = CFrame.new(bagLocation)
     fireclickdetector(bagClickDetector)
+    wait(0.01)
 end
 
 local function purchaseBag()
     while not hasBag() do
         buyBag()
-        wait(0.2)
+        wait(0.01)
     end
 end
--- purchaseMask(), purchaseKnife(), purchaseBat(), purchaseBag() --
--- HAS, BUY, PURCHASE TOOLS FUNCTIONS --
 
--- EQUIP TOOLS FUNCTIONS --
+local function hasChicken()
+    local Chicken = player.Character:FindFirstChild("[Chicken]") or player.Backpack:FindFirstChild("[Chicken]")
+    return Chicken ~= nil
+end
+
+local function buyChicken()
+    local chickenClickDetector = game:GetService("Workspace").Ignored.Shop.Others["[Chicken] - $5"].ClickDetector
+    local chickenLocation = chickenClickDetector.Parent.Head.Position
+
+    player.Character.HumanoidRootPart.CFrame = CFrame.new(chickenLocation)
+    fireclickdetector(chickenClickDetector)
+    wait(0.01)
+end
+
+local function purchaseChicken()
+    while not hasChicken() do
+        buyChicken()
+        wait(0.01)
+    end
+end
+
+local function hasMask()
+    local Mask = player.Character:FindFirstChild("[Mask]") or player.Backpack:FindFirstChild("[Mask]")
+    return Mask ~= nil
+end
+
+local function buyMask()
+    local maskClickDetector = game:GetService("Workspace").Ignored.Shop.Others["[Mask] - $25"].ClickDetector
+    local maskLocation = maskClickDetector.Parent.Head.Position
+
+    player.Character.HumanoidRootPart.CFrame = CFrame.new(maskLocation)
+    fireclickdetector(maskClickDetector)
+    wait(0.01)
+end
+
+local function purchaseMask()
+    while not hasMask() do
+        buyMask()
+        wait(0.01)
+    end
+end
+-- BUY ITEMS --
+
+-- CHARGE WEAPON FUNCTION --
+local function chargeWeapon()
+    if isCharging then
+        return
+    end
+
+    isCharging = true
+    local tool = player.Character:FindFirstChildWhichIsA("Tool")
+    if tool then
+        tool:Activate()
+        task.wait(1)
+        tool:Deactivate()
+    end
+    isCharging = false
+end
+-- CHARGE WEAPON FUNCTION --
+
+-- USE WEAPON FUNCTION --
+local function useWeapon()
+    if isUsing then
+        return
+    end
+
+    isUsing = true
+    local tool = player.Character:FindFirstChildWhichIsA("Tool")
+    if tool then
+        tool:Activate()
+        tool:Deactivate()
+    end
+    isUsing = false
+end
+-- USE WEAPON FUNCTION --
+
+-- EQUIP WEAPON FUNCTION --
 local function equipKnife()
-    local knife = player.Backpack:FindFirstChild("[Knife]")
-    if knife then
-        knife.Parent = player.Character
-    end
-end
-
-local function equipBat()
-    local bat = player.Backpack:FindFirstChild("[Bat]")
-    if bat then
-        bat.Parent = player.Character
-    end
-end
-
-local function equipMask()
-    local mask = player.Backpack:FindFirstChild("[Mask]")
-    if mask then
-        mask.Parent = player.Character
+    local Knife = player.Character:FindFirstChild("[Knife]") or player.Backpack:FindFirstChild("[Knife]")
+    if Knife then
+        Knife.Parent = player.Character
     end
 end
 
 local function equipBag()
-    local bag = player.Backpack:FindFirstChild("[BrownBag]")
-    if bag then
-        bag.Parent = player.Character
+    local Bag = player.Character:FindFirstChild("[BrownBag]") or player.Backpack:FindFirstChild("[BrownBag]")
+    if Bag then
+        Bag.Parent = player.Character
+    end
+end
+
+local function equipChicken()
+    local Chicken = player.Character:FindFirstChild("[Chicken]") or player.Backpack:FindFirstChild("[Chicken]")
+    if Chicken then
+        Chicken.Parent = player.Character
+    end
+end
+
+local function equipMask()
+    local Mask = player.Character:FindFirstChild("[Mask]") or player.Backpack:FindFirstChild("[Mask]")
+    if Mask then
+        Mask.Parent = player.Character
+    end
+end
+
+local function equipPhone()
+    local Phone = player.Character:FindFirstChild("Phone") or player.Backpack:FindFirstChild("Phone")
+    if Phone then
+        Phone.Parent = player.Character
     end
 end
 
 local function unequipTools()
-    if humanoidForUnequip then
-        humanoidForUnequip:UnequipTools()
+    local tool = player.Character:FindFirstChildWhichIsA("Tool")
+    if tool then
+        tool.Parent = player.Backpack
     end
 end
--- EQUIP/UNEQUIP TOOLS FUNCTIONS --
+-- EQUIP WEAPON FUNCTION --
 
--- LEFT CLICK FUNCTION --
-local lastClickTime = 0 -- Stores the last time clickLeftClick was called
+-- ANTI TRAMPOLINE FUNCTION --
+local function antiTrampoline()
+    local trampolineTouchInterest = game:GetService("Workspace").Map.Trampoline.MeshPart:FindFirstChild("TouchInterest")
 
-function clickLeftClick()
-    -- Check if enough time has passed since the last click (1 second)
-    if tick() - lastClickTime < 1 then
-        return -- Exit if less than 1 second has passed
+    if trampolineTouchInterest then
+        trampolineTouchInterest:Destroy()
     end
-
-    -- Update lastClickTime to the current time
-    lastClickTime = tick()
-
-    -- Ensure that VirtualInputManager exists
-    local vim = game:GetService("VirtualInputManager")
-
-    -- Get the screen's viewport size (size of the player's screen)
-    local viewportSize = workspace.CurrentCamera.ViewportSize
-    local centerX = viewportSize.X / 2 -- X-coordinate of the center of the screen
-    local centerY = viewportSize.Y / 2 -- Y-coordinate of the center of the screen
-
-    -- Simulate a mouse down (left click) at the center of the screen
-    vim:SendMouseButtonEvent(centerX, centerY, 0, true, game, 0)
-
-    -- Simulate a mouse up (releasing the left click)
-    vim:SendMouseButtonEvent(centerX, centerY, 0, false, game, 0)
 end
+-- ANTI TRAMPOLINE FUNCTION --
 
--- LEFT CLICK FUNCTION --
+-- ANY TOOL REACH FUNCTION --
+local function reach()
+    local tool = player.Character:FindFirstChildWhichIsA("Tool")
 
--- HIDE USER FUNCTION --
-local function hideUser()
-    savedCFrame = player.Character.HumanoidRootPart.CFrame
-    purchaseMask()
-    equipMask()
-    if SwagmodeFrame.Visible == false then
-    clickLeftClick()
-    wait(1)
-    unequipTools()
-    player.Character.HumanoidRootPart.CFrame = savedCFrame
+    tool.Grip = CFrame.new(0, 5, 0)
 
-    elseif 
-        SwagmodeFrame.Visible == true then
-        SwagmodeFrame.Visible = false
-            clickLeftClick()
+    local handle = tool:FindFirstChild("Handle")
+
+    if handle then
+        handle.Size = Vector3.new(20, 20, 20)
+        handle.Transparency = 1
+    end
+end
+-- ANY TOOL REACH FUNCTION --
+
+-- TELEPORT OLDCFRAME FUNCTION --
+local function teleportingToOldCFrame()
+    player.Character.HumanoidRootPart.CFrame = oldCFrame
+end
+-- TELEPORT OLDCFRAME FUNCTION --
+
+-- KNOCK PLAYER FUNCTION --
+local function knockPlayer()
+    local targetKO = TargetPlayer.Character.I_LOADED_I:FindFirstChild("K.O")
+    local targetStunnedValue = TargetPlayer.Character:FindFirstChild("Stunned")
+    if targetKO.Value == false and not targetStunnedValue then
+        purchaseKnife()
+        equipKnife()
+        reach()
+        task.spawn(chargeWeapon)
+        player.Character.HumanoidRootPart.CFrame = TargetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, -10, 0)
+    elseif
+        targetKO.Value == false and targetStunnedValue then
+        if connection then
+            connection:Disconnect()
+            connection = nil
+            announce("Knock", "Target Player Is Currently Attacking!", 5)
+            Knock.Text = "Knock"
+
+            connection = game:GetService("RunService").Heartbeat:Connect(teleportingToOldCFrame)
             wait(1)
-            unequipTools()
-        SwagmodeFrame.Visible = true
-
-player.Character.HumanoidRootPart.CFrame = savedCFrame
-        end
-    end
--- HIDE USER FUNCTION --
-
--- HOLD LEFT CLICK FUNCTION --
-function holdLeftClick()
-    local guiPos = mobileShoot.AbsolutePosition
-    local guiSize = mobileShoot.AbsoluteSize
-    local centerX = guiPos.X + guiSize.X / 2
-    local centerY = guiPos.Y + guiSize.Y / 2
-    vim:SendMouseButtonEvent(centerX, centerY, 0, true, game, 0)
-end
-
--- HOLD LEFT CLICK FUNCTION --
-
--- NOCLIP AND CLIP FUNCTIONS --
-local function EnableNoclip()
-    Clip = false
-    wait(0.1)
-
-    local function NoclipLoop()
-        if Clip == false and player.Character ~= nil then
-            for _, child in pairs(player.Character:GetDescendants()) do
-                if child:IsA("BasePart") and child.CanCollide == true then
-                    child.CanCollide = false
-                end
+            if connection then
+                connection:Disconnect()
+                connection = nil
             end
         end
-    end
-
-    Noclipping = RunService.Stepped:Connect(NoclipLoop)
-    print("Noclip enabled")
-end
-
-local function DisableNoclip()
-    if Noclipping then
-        Noclipping:Disconnect()
-        Noclipping = nil -- Reset the Noclipping variable
-    end
-    Clip = true
-
-    -- Restore CanCollide for all parts
-    if player.Character then
-        for _, child in pairs(player.Character:GetDescendants()) do
-            if child:IsA("BasePart") then
-                child.CanCollide = true
-            end
-        end
-    end
-    print("Clipping enabled")
-end
--- NOCLIP AND CLIP FUNCTIONS --
-------------------------------------
-
--- FORCE RESET FUNCTION --
-local function forceReset()
-    if player.Character and player.Character:FindFirstChild("Humanoid") then
-        player.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Dead)
-    end
-end
--- FORCE RESET FUNCTION --
-
--- TOOL REACH FUNCTION-
-local function toolReach()
-    if player.Character:FindFirstChildWhichIsA('Tool') then
-        local tool = player.Character:FindFirstChildWhichIsA('Tool')
-        tool.Grip = CFrame.new(0, 5, 0)
-        if tool:FindFirstChild("Handle") then
-            local handle = tool.Handle
-            handle.Size = Vector3.new(20, 20, 20)
-            handle.Transparency = 1
-            local selectionBox = Instance.new("SelectionBox")
-            selectionBox.Adornee = handle
-            selectionBox.Color3 = Color3.new(1, 0, 0)
-            selectionBox.LineThickness = 0.1
-            selectionBox.Parent = handle
-        end
-    end
-end
--- TOOL REACH FUNCTION --
-
--- ANTI STOMP FUNCTION --
-local function antiStomp()
-    character = player.Character or player.CharacterAdded:Wait()
-
-    if antiStompConnection then
-        antiStompConnection:Disconnect()
-    end
-
-    local koValue = character:WaitForChild("I_LOADED_I"):WaitForChild("K.O")
-
-    antiStompConnection = koValue:GetPropertyChangedSignal("Value"):Connect(function()
-        if koValue.Value == true then
+    else
+        if connection then
+            connection:Disconnect()
+            connection = nil
             unequipTools()
-            EnableNoclip()
+            Knock.Text = "Knock"
+            announce("Knock", "Successfully Knocked: " .. TargetPlayer.Name .. "!", 5)
+
+            connection = game:GetService("RunService").Heartbeat:Connect(teleportingToOldCFrame)
             wait(1)
-            DisableNoclip()
-        end
-    end)
-end
--- ANTI STOMP FUNCTION --
-
--- STOP ANTI STOMP FUNCTION --
-local function antiStompStop()
-    if antiStompConnection then
-        antiStompConnection:Disconnect()
-        antiStompConnection = nil
-    end
-end
--- STOP ANTI STOMP FUNCTION --
-
--- AUTO BLOCK FUNCTION --
-local function autoBlock()
-    while autoBlockEnabled do
-        for _, v in pairs(game.Workspace.Characters:GetChildren()) do
-            if v:FindFirstChild("I_LOADED_I") and v.I_LOADED_I:FindFirstChild("Attacking") then
-                local attackingValue = v.I_LOADED_I.Attacking
-
-                attackingValue:GetPropertyChangedSignal("Value"):Connect(function()
-                    -- Check if both players have HumanoidRootPart
-                    if v:FindFirstChild("HumanoidRootPart") and character:FindFirstChild("HumanoidRootPart") then
-                        if (v.HumanoidRootPart.Position - character.HumanoidRootPart.Position).Magnitude <= MaxAutoBlockDistance then
-                            local tool = v:FindFirstChildWhichIsA("Tool")
-
-                            if attackingValue.Value then
-                                if tool and not table.find(forbidden, tool.Name) and v.Name ~= player.Name then
-                                    local currentTime = tick()
-                                    if currentTime - lastBlockTime >= blockCooldown then
-                                        lastBlockTime = currentTime
-                                        local args = { "Block", false }
-                                        game:GetService("ReplicatedStorage").MainRemote:FireServer(unpack(args))
-                                    end
-                                end
-                            else
-                                if tool and not table.find(forbidden, tool.Name) and v.Name ~= player.Name then
-                                    local args = { "Block", true }
-                                    game:GetService("ReplicatedStorage").MainRemote:FireServer(unpack(args))
-                                end
-                            end
-                        end
-                    end
-                end)
+            if connection then
+                connection:Disconnect()
+                connection = nil
             end
         end
-        wait(0.1)
+    end
+end
+-- KNOCK PLAYER FUNCTION --
+
+-- ANTISLOW FUNCTION --
+local function antiSlow()
+    local character = player.Character or player.CharacterAdded:Wait()
+    local StunnedValue = character:FindFirstChild("Stunned")
+    if StunnedValue then
+        StunnedValue:Destroy()
+    end
+    local LoadedI = character:FindFirstChild("I_LOADED_I")
+    if LoadedI then
+        local CooldownValue = LoadedI:FindFirstChild("Cooldown")
+        if CooldownValue then
+            CooldownValue:Destroy()
+        end
+    end
+end
+-- ANTISLOW FUNCTION --
+
+-- KILL PLAYER FUNCTION --
+local function stompPlayer()
+    local targetTorso = TargetPlayer.Character:FindFirstChild("Torso") or
+        TargetPlayer.Character:FindFirstChild("UpperTorso")
+    local targetHealth = TargetPlayer.Character.Humanoid.Health
+    player.Character.HumanoidRootPart.CFrame = targetTorso.CFrame * CFrame.new(0, 3, 0)
+
+    local args = {
+        [1] = "Stomp"
+    }
+
+    game:GetService("ReplicatedStorage").MainRemote:FireServer(unpack(args))
+    if targetHealth <= 0 then
+        if connection then
+            connection:Disconnect()
+            connection = nil
+            unequipTools()
+            Kill.Text = "Kill"
+            announce("Kill", "Successfully Killed: " .. TargetPlayer.Name .. "!", 5)
+
+            connection = game:GetService("RunService").Heartbeat:Connect(teleportingToOldCFrame)
+            wait(1)
+            if connection then
+                connection:Disconnect()
+                connection = nil
+            end
+        end
     end
 end
 
-game.Workspace.Characters.ChildAdded:Connect(function(newCharacter)
-    if newCharacter:FindFirstChild("I_LOADED_I") and newCharacter.I_LOADED_I:FindFirstChild("Attacking") then
-        local attackingValue = newCharacter.I_LOADED_I.Attacking
+local function killPlayer()
+    local targetKO = TargetPlayer.Character.I_LOADED_I:FindFirstChild("K.O")
+    local targetStunnedValue = TargetPlayer.Character:FindFirstChild("Stunned")
+    if targetKO.Value == false and not targetStunnedValue then
+        purchaseKnife()
+        equipKnife()
+        reach()
+        task.spawn(chargeWeapon)
+        player.Character.HumanoidRootPart.CFrame = TargetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, -10, 0)
+    elseif
+        targetKO.Value == false and targetStunnedValue then
+        if connection then
+            connection:Disconnect()
+            connection = nil
+            announce("Kill", "Target Player Is Currently Attacking!", 5)
+            Kill.Text = "Kill"
 
-        attackingValue:GetPropertyChangedSignal("Value"):Connect(function()
-            -- Ensure both newCharacter and player.Character have HumanoidRootPart
-            if newCharacter:FindFirstChild("HumanoidRootPart") and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-                if (newCharacter.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).Magnitude <= MaxAutoBlockDistance then
-                    local tool = newCharacter:FindFirstChildWhichIsA("Tool")
-
-                    if attackingValue.Value then
-                        if tool and not table.find(forbidden, tool.Name) and newCharacter.Name ~= player.Name then
-                            local currentTime = tick()
-                            if currentTime - lastBlockTime >= blockCooldown then
-                                lastBlockTime = currentTime
-                                local args = { "Block", false }
-                                game:GetService("ReplicatedStorage").MainRemote:FireServer(unpack(args))
-                            end
-                        end
-                    else
-                        if tool and not table.find(forbidden, tool.Name) and newCharacter.Name ~= player.Name then
-                            local args = { "Block", true }
-                            game:GetService("ReplicatedStorage").MainRemote:FireServer(unpack(args))
-                        end
-                    end
-                end
+            connection = game:GetService("RunService").Heartbeat:Connect(teleportingToOldCFrame)
+            wait(1)
+            if connection then
+                connection:Disconnect()
+                connection = nil
             end
-        end)
-    end
-end)
-
--- TOGGLE GUI BUTTON --
-ToggleButton.MouseButton1Click:Connect(function()
-    guiVisible = not guiVisible
-    if guiVisible then
-        ToggleButton.Text = "Hide"
-        SwagmodeFrame.Visible = true
+        end
     else
-        ToggleButton.Text = "Show"
-        SwagmodeFrame.Visible = false
-    end
-end)
--- TOGGLE GUI BUTTON --
+        if connection then
+            connection:Disconnect()
+            connection = nil
 
--- VIEW FUNCTION --
-View.MouseButton1Click:Connect(function()
-    if View.Text == 'View' then
-        View.Text = 'Unview'
-        announce('View', "Started Viewing " .. TargetTextbox.Text, 5)
-        repeat view(TargetTextbox.Text) until View.Text == 'View'
-        game.Workspace:FindFirstChildWhichIsA('Camera').CameraSubject = player.Character:FindFirstChildWhichIsA(
-            'Humanoid')
-    else
-        View.Text = 'View'
-        announce('View', "Stopped Viewing " .. TargetTextbox.Text, 5)
-    end
-end)
--- VIEW FUNCTION --
-
--- KILLING FUNCTION --
-local function startKilling()
-    local targetPlayer = game.Players:FindFirstChild(TargetTextbox.Text)
-    unequipTools()
-    purchaseKnife()
-    equipKnife()
-    wait(0.5)
-    toolReach()
-
-    if targetPlayer and targetPlayer.Character then
-        local targetHumanoidRootPart = targetPlayer.Character:FindFirstChild("HumanoidRootPart")
-        local targetKOValue = targetPlayer.Character:FindFirstChild("I_LOADED_I") and
-            targetPlayer.Character.I_LOADED_I:FindFirstChild("K.O")
-
-        local connection
-
-        local function teleportLoop()
-            if Killing then
-                if targetKOValue and targetKOValue.Value == false and targetHumanoidRootPart then
-                    if targetHumanoidRootPart then
-                        equipKnife()
-                        holdLeftClick()
-                        humanoid.PlatformStand = true
-                        player.Character.HumanoidRootPart.CFrame = targetHumanoidRootPart.CFrame * CFrame.new(0, -8, 0)
-                    end
-                else
-                    if targetKOValue and targetKOValue.Value == true then
-                        local targetTorso = targetPlayer.Character:FindFirstChild("Torso") or
-                            targetPlayer.Character:FindFirstChild("UpperTorso")
-                        Killing = false
-                        Stomping = true
-
-                        while Stomping do
-                            wait(0.01)
-                            player.Character.HumanoidRootPart.CFrame = targetTorso.CFrame * CFrame.new(0, 1, 0)
-                            game:GetService("ReplicatedStorage").MainRemote:FireServer(unpack(stompArgs))
-
-                            if targetPlayer.Character and targetPlayer.Character:FindFirstChild("Humanoid") and targetPlayer.Character.Humanoid.Health <= 0 then
-                                Kill.Text = "Kill"
-                                Stomping = false
-
-                                player.Character.Humanoid.PlatformStand = false
-                                connection:Disconnect()
-                                wait(0.5)
-                                player.Character.HumanoidRootPart.CFrame = savedCFrame
-                            end
-                        end
-                    end
-                end
-            end
-        end
-
-        connection = RunService.Heartbeat:Connect(teleportLoop)
-    end
-end
--- STOP KILL FUNCTION --
-
--- KNOCK FUNCTION --
-local function startKnocking()
-    local targetPlayer = game.Players:FindFirstChild(TargetTextbox.Text)
-    unequipTools()
-    purchaseKnife()
-    equipKnife()
-    toolReach()
-
-    if targetPlayer and targetPlayer.Character then
-        local targetHumanoidRootPart = targetPlayer.Character:FindFirstChild("HumanoidRootPart")
-        local targetKOValue = targetPlayer.Character:FindFirstChild("I_LOADED_I") and
-            targetPlayer.Character.I_LOADED_I:FindFirstChild("K.O")
-
-        local connection
-
-        local function teleportLoop()
-            if Knocking then
-                if targetKOValue and targetKOValue.Value == false and targetHumanoidRootPart then
-                    -- Approach target and attempt to knock them out
-                    equipKnife()
-                    holdLeftClick()
-                    humanoid.PlatformStand = true
-
-                    -- Teleport 8 studs behind the target player
-                    player.Character.HumanoidRootPart.CFrame = targetHumanoidRootPart.CFrame * CFrame.new(0, -8, 0)
-                else
-                    -- If the target is already knocked out, stop the loop and reset
-                    if targetKOValue and targetKOValue.Value == true then
-                        Knocking = false
-                        Knock.Text = "Knock"
-                        announce("Knock", "Stopped Knocking " .. TargetTextbox.Text, 5)
-                        player.Character.Humanoid.PlatformStand = false
-                        connection:Disconnect()
-                        player.Character.HumanoidRootPart.CFrame = savedCFrame
-                    end
-                end
-            end
-        end
-
-        connection = RunService.Heartbeat:Connect(teleportLoop)
-    end
-end
--- KNOCK FUNCTION --
-
--- DESYNC FUNCTION --
-checkcaller = checkcaller
-newcclosure = newcclosure
-hookmetamethod = hookmetamethod
-
-local deSyncEnabled = false
-local playermouse = player:GetMouse()
-
-function generateRandomNumberRange(range)
-    return math.random(-range * 100, range * 100) / 100
-end
-
-function generateRandomVector(rangeX, rangeY, rangeZ)
-    return Vector3.new(generateRandomNumberRange(rangeX), generateRandomNumberRange(rangeY), generateRandomNumberRange(rangeZ))
-end
-
-function startDeSync()
-    deSyncEnabled = true
-end
-
-function stopDeSync()
-    deSyncEnabled = false
-end
-
-local desyncData = {}
-runService.Heartbeat:Connect(function()
-    if deSyncEnabled then
-        desyncData[1] =
-player.Character.HumanoidRootPart.CFrame
-        desyncData[2] = player.Character.HumanoidRootPart.AssemblyLinearVelocity
-
-        local spoofedCFrame = player.Character.HumanoidRootPart.CFrame
-
-        spoofedCFrame = spoofedCFrame * CFrame.new(Vector3.new(0, 0, 0))
-        spoofedCFrame = spoofedCFrame * CFrame.Angles(math.rad(generateRandomNumberRange(180)), math.rad(generateRandomNumberRange(180)), math.rad(generateRandomNumberRange(180)))
-
-        player.Character.HumanoidRootPart.CFrame = spoofedCFrame
-        player.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(1, 1, 1) * 16384
-
-        runService.RenderStepped:Wait()
-
-        player.Character.HumanoidRootPart.CFrame = desyncData[1]
-        player.Character.HumanoidRootPart.AssemblyLinearVelocity = desyncData[2]
-    end
-end)
-
-local originalHook = nil
-originalHook = hookmetamethod(game, "__index", newcclosure(function(self, key)
-    if deSyncEnabled then
-        if not checkcaller() then
-            if key == "CFrame" and deSyncEnabled and player.Character and player.Character:FindFirstChild("HumanoidRootPart") and player.Character:FindFirstChild("Humanoid") and player.Character:FindFirstChild("Humanoid").Health > 0 then
-                if self == player.Character.HumanoidRootPart then
-                    return desyncData[1] or CFrame.new()
-                elseif self == player.Character.Head then
-                    return desyncData[1] and desyncData[1] + Vector3.new(0, player.Character.HumanoidRootPart.Size / 2 + 0.5, 0) or CFrame.new()
-                end
-            end
+            connection = game:GetService("RunService").Heartbeat:Connect(stompPlayer)
         end
     end
-    return originalHook(self, key)
-end))
--- DESYNC FUNCTION --
+end
+-- KILL PLAYER FUNCTION --
 
 -- ANTI LOCK FUNCTION --
 local antiLockActive = false
@@ -1484,11 +1218,345 @@ local function toggleAntiLock()
 end
 -- ANTI LOCK FUNCTION --
 
+-- DESYNC FUNCTION --
+checkcaller = checkcaller
+newcclosure = newcclosure
+hookmetamethod = hookmetamethod
+
+local deSyncEnabled = false
+local playermouse = player:GetMouse()
+
+function generateRandomNumberRange(range)
+    return math.random(-range * 100, range * 100) / 100
+end
+
+function generateRandomVector(rangeX, rangeY, rangeZ)
+    return Vector3.new(generateRandomNumberRange(rangeX), generateRandomNumberRange(rangeY),
+        generateRandomNumberRange(rangeZ))
+end
+
+function startDeSync()
+    deSyncEnabled = true
+end
+
+function stopDeSync()
+    deSyncEnabled = false
+end
+
+local desyncData = {}
+game:GetService("RunService").Heartbeat:Connect(function()
+    if deSyncEnabled then
+        desyncData[1] =
+            player.Character.HumanoidRootPart.CFrame
+        desyncData[2] = player.Character.HumanoidRootPart.AssemblyLinearVelocity
+
+        local spoofedCFrame = player.Character.HumanoidRootPart.CFrame
+
+        spoofedCFrame = spoofedCFrame * CFrame.new(Vector3.new(0, 0, 0))
+        spoofedCFrame = spoofedCFrame *
+            CFrame.Angles(math.rad(generateRandomNumberRange(180)), math.rad(generateRandomNumberRange(180)),
+                math.rad(generateRandomNumberRange(180)))
+
+        player.Character.HumanoidRootPart.CFrame = spoofedCFrame
+        player.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.new(1, 1, 1) * 16384
+
+        game:GetService("RunService").RenderStepped:Wait()
+
+        player.Character.HumanoidRootPart.CFrame = desyncData[1]
+        player.Character.HumanoidRootPart.AssemblyLinearVelocity = desyncData[2]
+    end
+end)
+
+local originalHook = nil
+originalHook = hookmetamethod(game, "__index", newcclosure(function(self, key)
+    if deSyncEnabled then
+        if not checkcaller() then
+            if key == "CFrame" and deSyncEnabled and player.Character and player.Character:FindFirstChild("HumanoidRootPart") and player.Character:FindFirstChild("Humanoid") and player.Character:FindFirstChild("Humanoid").Health > 0 then
+                if self == player.Character.HumanoidRootPart then
+                    return desyncData[1] or CFrame.new()
+                elseif self == player.Character.Head then
+                    return desyncData[1] and
+                        desyncData[1] + Vector3.new(0, player.Character.HumanoidRootPart.Size / 2 + 0.5, 0) or
+                        CFrame.new()
+                end
+            end
+        end
+    end
+    return originalHook(self, key)
+end))
+-- DESYNC FUNCTION --
+
+-- TOOL REACH FUNCTION --
+local function toolReach()
+    if player.Character:FindFirstChildWhichIsA('Tool') then
+        local tool = player.Character:FindFirstChildWhichIsA('Tool')
+        tool.Grip = CFrame.new(0, 5, 0)
+        if tool:FindFirstChild("Handle") then
+            local handle = tool.Handle
+            handle.Size = Vector3.new(20, 20, 20)
+            handle.Transparency = 1
+            local selectionBox = Instance.new("SelectionBox")
+            selectionBox.Adornee = handle
+            selectionBox.Color3 = Color3.new(1, 0, 0)
+            selectionBox.LineThickness = 0.1
+            selectionBox.Parent = handle
+        end
+    end
+end
+-- TOOL REACH FUNCTION --
+
+-- NOCLIP FUNCTION --
+local function EnableNoclip()
+    Clip = false
+    wait(0.1)
+
+    local function NoclipLoop()
+        if Clip == false and player.Character ~= nil then
+            for _, child in pairs(player.Character:GetDescendants()) do
+                if child:IsA("BasePart") and child.CanCollide == true then
+                    child.CanCollide = false
+                end
+            end
+        end
+    end
+
+    Noclipping = game:GetService("RunService").Stepped:Connect(NoclipLoop)
+end
+
+local function DisableNoclip()
+    if Noclipping then
+        Noclipping:Disconnect()
+        Noclipping = nil
+    end
+    Clip = true
+
+    if player.Character then
+        for _, child in pairs(player.Character:GetDescendants()) do
+            if child:IsA("BasePart") then
+                child.CanCollide = true
+            end
+        end
+    end
+end
+-- NOCLIP FUNCTION --
+
+-- VIEW PLAYER FUNCTION --
+local function viewPlayer()
+    game.Workspace:FindFirstChildWhichIsA("Camera").CameraSubject = TargetPlayer.Character.HumanoidRootPart
+    announce("View", "Started Viewing: " .. TargetPlayer.Name .. "!", 5)
+end
+-- VIEW PLAYER FUNCTION --
+
+-- FORCE RESET FUNCTION --
+local function forceReset()
+    player.Character.Head:Destroy()
+    originalCFrame = player.Character.HumanoidRootPart.CFrame
+
+    player.Character.HumanoidRootPart.CFrame = originalCFrame * CFrame.new(0, -500, 0)
+end
+-- FORCE RESET FUNCTION --
+
+-- BAG PLAYER FUNCTION --
+local function bagPlayer()
+    local bagValue = TargetPlayer.Character:FindFirstChild("Bagged")
+    local targetStunnedValue = TargetPlayer.Character:FindFirstChild("Stunned")
+
+    if not bagValue and not targetStunnedValue then
+        purchaseBag()
+        equipBag()
+        reach()
+        task.spawn(useWeapon)
+        player.Character.HumanoidRootPart.CFrame = TargetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, -10, 0)
+    elseif
+        not bagValue and targetStunnedValue then
+        if connection then
+            connection:Disconnect()
+            connection = nil
+            announce("Bag", "Target Player Is Currently Attacking!", 5)
+            Bag.Text = "Bag"
+
+            connection = game:GetService("RunService").Heartbeat:Connect(teleportingToOldCFrame)
+            wait(1)
+            if connection then
+                connection:Disconnect()
+                connection = nil
+            end
+        end
+    else
+        if connection then
+            connection:Disconnect()
+            connection = nil
+        end
+        connection = game:GetService("RunService").Heartbeat:Connect(teleportingToOldCFrame)
+        Bag.Text = "Bag"
+        announce("Bag", "Successfully Bagged: " .. TargetPlayer.Name .. "!", 5)
+        wait(1)
+        if connection then
+            connection:Disconnect()
+            connection = nil
+        end
+    end
+end
+-- BAG PLAYER FUNCTION --
+
+-- ANTI STOMP FUNCTION --
+local function antiStomp()
+    character = player.Character or player.CharacterAdded:Wait()
+
+    if antiStompConnection then
+        antiStompConnection:Disconnect()
+    end
+
+    local koValue = character:WaitForChild("I_LOADED_I"):WaitForChild("K.O")
+
+    antiStompConnection = koValue:GetPropertyChangedSignal("Value"):Connect(function()
+        if koValue.Value == true then
+            wait(0.2)
+            player.Character.Head:Destroy()
+                local deathmanok = player.Character:FindFirstChild("HumanoidRootPart").position
+                wait(1.5)
+                player.Character.HumanoidRootPart.CFrame = CFrame.new(deathmanok)
+        end
+    end)
+end
+-- ANTI STOMP FUNCTION --
+
+-- STOP ANTI STOMP FUNCTION --
+local function antiStompStop()
+    if antiStompConnection then
+        antiStompConnection:Disconnect()
+        antiStompConnection = nil
+    end
+end
+-- STOP ANTI STOMP FUNCTION --
+
+-- AUTO HEAL FUNCTION --
+local function autoHeal()
+    local playerHealth = player.Character.Humanoid.Health
+
+    if playerHealth <= 20 and not oldCFrame then
+        oldCFrame = player.Character.HumanoidRootPart.CFrame
+        unequipTools()
+        purchaseChicken()
+        equipChicken()
+
+        while hasChicken() do
+            player.Character.HumanoidRootPart.CFrame = CFrame.new(0, -297, 0)
+            equipChicken()
+            task.spawn(useWeapon)
+            task.wait(0.01)
+        end
+
+        if connection then
+            connection:Disconnect()
+            connection = nil
+        end
+
+        connection = game:GetService("RunService").Heartbeat:Connect(teleportingToOldCFrame)
+        task.wait(1)
+
+        if connection then
+            connection:Disconnect()
+            connection = nil
+        end
+        oldCFrame = nil
+    end
+end
+-- AUTO HEAL FUNCTION --
+
+-- HIDE USER FUNCTION --
+local function hideUser()
+    oldCFrame = player.Character.HumanoidRootPart.CFrame
+
+    purchaseMask()
+    equipMask()
+    task.spawn(useWeapon)
+    unequipTools()
+
+    player.Character.HumanoidRootPart.CFrame = oldCFrame
+end
+-- HIDE USER FUNCTION --
+
+-- BRING PLAYER FUNCTION --
+local function grab()
+    local args = {
+        [1] = "Grabbing",
+        [2] = false
+    }
+
+    game:GetService("ReplicatedStorage").MainRemote:FireServer(unpack(args))
+end
+
+local function grabPlayer()
+    local targetTorso = TargetPlayer.Character:FindFirstChild("Torso") or
+        TargetPlayer.Character:FindFirstChild("UpperTorso")
+    local grabValue = TargetPlayer.Character:FindFirstChild("WELD_GRAB")
+
+    player.Character.HumanoidRootPart.CFrame = targetTorso.CFrame * CFrame.new(0, 2, 0)
+
+    if not isGrabbing then
+        isGrabbing = true
+        task.spawn(function()
+            grab()
+            task.wait(0.5)
+            isGrabbing = false
+        end)
+    end
+
+    if grabValue then
+        if connection then
+            connection:Disconnect()
+            connection = nil
+        end
+        connection = game:GetService("RunService").Heartbeat:Connect(teleportingToOldCFrame)
+        Bring.Text = "Bring"
+        announce("Bring", TargetPlayer.Name .. " was brought successfully!", 5)
+        wait(1)
+        if connection then
+            connection:Disconnect()
+            connection = nil
+        end
+    end
+end
+
+local function bringPlayer()
+    local targetKO = TargetPlayer.Character.I_LOADED_I:FindFirstChild("K.O")
+    local targetStunnedValue = TargetPlayer.Character:FindFirstChild("Stunned")
+    if targetKO.Value == false and not targetStunnedValue then
+        purchaseKnife()
+        equipKnife()
+        reach()
+        task.spawn(chargeWeapon)
+
+        player.Character.HumanoidRootPart.CFrame = TargetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, -10, 0)
+    elseif
+        targetKO.Value == false and targetStunnedValue then
+        if connection then
+            connection:Disconnect()
+            connection = nil
+            announce("Bring", "Target Player Is Currently Attacking!", 5)
+            Bring.Text = "Bring"
+            connection = game:GetService("RunService").Heartbeat:Connect(teleportingToOldCFrame)
+            wait(1)
+            if connection then
+                connection:Disconnect()
+                connection = nil
+            end
+        end
+    else
+        if connection then
+            connection:Disconnect()
+            connection = nil
+            unequipTools()
+
+            connection = game:GetService("RunService").Heartbeat:Connect(grabPlayer)
+        end
+    end
+end
+-- BRING PLAYER FUNCTION --
+
 -- STEAL AUDIO FUNCTION --
 local function stealAudio()
-    local targetPlayer = game.Players:FindFirstChild(TargetTextbox.Text)
-
-    -- List of Roblox default sounds to ignore
     local ignoredSoundIDs = {
         "rbxasset://sounds/action_get_up.mp3",
         "rbxasset://sounds/uuhhh.mp3",
@@ -1501,24 +1569,20 @@ local function stealAudio()
     }
 
     if targetPlayer and targetPlayer.Character then
-        -- Check if the player has a "Radio" equipped
         local radio = targetPlayer.Character:FindFirstChild("Radio")
         if radio then
             local foundAudio = false
             local playerPosition = targetPlayer.Character.HumanoidRootPart.Position
 
-            -- Search for any Sound instances in the environment (workspace)
             for _, sound in ipairs(workspace:GetDescendants()) do
                 if sound:IsA("Sound") and sound.IsPlaying then
-                    -- Check if the sound is within a certain range of the player (e.g., 20 studs)
                     local soundPosition = sound.Parent and sound.Parent:IsA("BasePart") and sound.Parent.Position
                     if soundPosition and (soundPosition - playerPosition).Magnitude <= 10 then
                         local soundId = sound.SoundId
-                        local audioID = soundId:match("^rbxassetid://(%d+)$") -- Only extract if it matches the full format
+                        local audioID = soundId:match("^rbxassetid://(%d+)$")
 
-                        -- Ignore sounds if the ID is in the ignored list
                         local isIgnored = false
-                        if not audioID then -- If no numeric ID, check against ignored paths
+                        if not audioID then
                             for _, ignoredID in ipairs(ignoredSoundIDs) do
                                 if soundId == ignoredID then
                                     isIgnored = true
@@ -1527,13 +1591,12 @@ local function stealAudio()
                             end
                         end
 
-                        -- Display audio ID if it's valid and not ignored
                         if not isIgnored and audioID then
                             announce("Audio Stealer", "Audio Was Copied To Your Clipboard!", 5)
                             setclipboard(audioID)
 
                             foundAudio = true
-                            break -- Stop searching once we find a valid audio ID
+                            break
                         end
                     end
                 end
@@ -1551,200 +1614,210 @@ local function stealAudio()
 end
 -- STEAL AUDIO FUNCTION --
 
--- BAG PLAYER FUNCTION --
-local function bag()
-    local targetPlayer = game.Players:FindFirstChild(TargetTextbox.Text)
-    if not targetPlayer then
-        announce("Bag", "Player Not Found", 3)
-        Bag.Text = "Bag"
-        return
+-- SPAM CALL PLAYER FUNCTION --
+local function spamCallPlayer()
+    equipPhone()
+    while TargetPlayer.Character:FindFirstChild("Phone") do
+        task.wait(0.1)
     end
+    local args = {
+        [1] = TargetPlayer.Name
+    }
+    game:GetService("ReplicatedStorage").Call:FireServer(unpack(args))
+end
+-- SPAM CALL PLAYER FUNCTION --
 
-    -- Save the current CFrame of the player
-    local savedCFrame = player.Character.PrimaryPart.CFrame
-    local connection
-    local teleportConnection
-
-    -- Function to check if the bag is in inventory or equipped
-    local function hasBag()
-        return player.Backpack:FindFirstChild("[BrownBag]") or player.Character:FindFirstChild("[BrownBag]")
-    end
-
-    -- Start the bagging process
-    local function startBagging()
-        unequipTools()
+-- HIDE/SHOW GUI --
+ToggleButton.MouseButton1Click:Connect(function()
+    if ToggleButton.Text == "Hide" then
+        ToggleButton.Text = "Show"
         SwagmodeFrame.Visible = false
-        announce("Bag", "Started Bagging " .. TargetTextbox.Text, 5)
-
-        if not hasBag() then
-            purchaseBag()
-            equipBag()
-            wait(0.5)
-            toolReach()
-        end
-
-        -- Get the target player's HumanoidRootPart
-        local targetHumanoidRootPart = targetPlayer.Character:FindFirstChild("HumanoidRootPart")
-        if not targetHumanoidRootPart then
-            announce("Bag", "Player Left/Not Found", 3)
-            return
-        end
-
-        local function teleportLoop()
-            if Bagging then
-                equipBag()
-                clickLeftClick()
-                player.Character.HumanoidRootPart.CFrame = targetHumanoidRootPart.CFrame * CFrame.new(0, -8, 0)
-
-                if not hasBag() then
-                    teleportConnection:Disconnect()
-                    purchaseBag()
-                    equipBag()
-                    startBagging()
-                end
-            end
-        end
-
-        teleportConnection = RunService.Heartbeat:Connect(teleportLoop)
-
-        connection = targetPlayer.Character.ChildAdded:Connect(function(child)
-            if child.Name == "Bagged" then
-                Bagging = false
-                    SwagmodeFrame.Visible = true
-                Bag.Text = "Bag"
-                announce("Bag", "Stopped Bagging " .. TargetTextbox.Text, 5)
-
-                if teleportConnection then teleportConnection:Disconnect() end
-                player.Character.HumanoidRootPart.CFrame = savedCFrame
-                connection:Disconnect()
-            end
-        end)
-    end
-
-    if teleportConnection then teleportConnection:Disconnect() end
-    if connection then connection:Disconnect() end
-
-    Bagging = true
-    startBagging()
-end
--- BAG PLAYER FUNCTION --
-
--- ANTISLOW START FUNCTION --
-local Loop
-local antiSlow = function()
-    local character = player.Character or player.CharacterAdded:Wait()
-    local StunnedValue = character:FindFirstChild("Stunned")
-    if StunnedValue then
-        StunnedValue:Destroy()
-    end
-
-    local LoadedI = character:FindFirstChild("I_LOADED_I")
-    if LoadedI then
-        local CooldownValue = LoadedI:FindFirstChild("Cooldown")
-        if CooldownValue then
-            CooldownValue:Destroy()
-        end
-    end
-end
-
-local function antiSlowStart()
-    Loop = game:GetService("RunService").Heartbeat:Connect(antiSlow)
-end
--- ANTISLOW START FUNCTION --
-
--- ANTISLOW STOP FUNCTION --
-local function antiSlowStop()
-    if Loop then
-        Loop:Disconnect()
-    end
-    antiSlowActive = false
-end
--- ANTISLOW STOP FUNCTION --
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
--- BUTTONS ON CLICK FUNCTIONS --
-
-StealAudio.MouseButton1Click:Connect(function()
-    stealAudio()
-end)
-
--- GOTO ONCLICK FUNCTION --
-GoTo.MouseButton1Click:Connect(function()
-    player.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players[TargetTextbox.Text].Character.UpperTorso.Position)
-end)
--- GOTO ONCLICK FUNCTION --
-
--- KILL ONCLICK FUNCTION --
-Kill.MouseButton1Click:Connect(function()
-    if Kill.Text == "Kill" then
-        savedCFrame = player.Character.HumanoidRootPart.CFrame
-        Kill.Text = "Unkill"
-        announce('Kill', "Started Killing " .. TargetTextbox.Text, 5)
-        Killing = true
-        startKilling()
     else
-        if Kill.Text == "Unkill" then
-            Kill.Text = "Kill"
-            announce('Kill', "Stopped Killing " .. TargetTextbox.Text, 5)
-
-            if connection then
-                connection:Disconnect()
-                connection = nil
-            end
-
-            player.Character.Humanoid.PlatformStand = false
-            Killing = false
-            Stomping = false
-            wait(0.5)
-            player.Character.HumanoidRootPart.CFrame = savedCFrame
+        if ToggleButton.Text == "Show" then
+            ToggleButton.Text = "Hide"
+            SwagmodeFrame.Visible = true
         end
     end
 end)
--- KILL ONCLICK FUNCTION --
+-- HIDE/SHOW GUI --
 
--- KNOCK ONCLICK FUNCTION --
+-- ONCLICK FUNCTIONS --
 Knock.MouseButton1Click:Connect(function()
-    if Knock.Text == "Knock" then
-        savedCFrame = player.Character.HumanoidRootPart.CFrame
+    if not connection then
+        oldCFrame = player.Character.HumanoidRootPart.CFrame
         Knock.Text = "Unknock"
-        announce('Knock', "Started Knocking " .. TargetTextbox.Text, 5)
-        Knocking = true
-        startKnocking()
+
+        connection = game:GetService("RunService").Heartbeat:Connect(knockPlayer)
     else
-        if Knock.Text == "Unknock" then
-            Knock.Text = "Knock"
-            announce('Knock', "Stopped Knocking " .. TargetTextbox.Text, 5)
-
-            if connection then
-                connection:Disconnect()
-                connection = nil
-            end
-
-            player.Character.Humanoid.PlatformStand = false
-            Knocking = false
-            wait(0.5)
-
-            player.Character.HumanoidRootPart.CFrame = savedCFrame
+        if connection then
+            connection:Disconnect()
+            connection = nil
+        end
+        connection = game:GetService("RunService").Heartbeat:Connect(teleportingToOldCFrame)
+        Knock.Text = "Knock"
+        wait(1)
+        if connection then
+            connection:Disconnect()
+            connection = nil
         end
     end
 end)
--- KNOCK ONCLICK FUNCTION --
 
--- ANTI SLOW ONCLICK FUNCTION --
 AntiSlow.MouseButton1Click:Connect(function()
     if AntiSlow.Text == "No Slow: Off" then
         AntiSlow.Text = "No Slow: On"
-        antiSlowActive = true
-        antiSlowStart()
-    elseif
-        AntiSlow.Text == "No Slow: On" then
-        AntiSlow.Text = "No Slow: Off"
-        antiSlowActive = false
-        antiSlowStop()
+        enableAntiSlow = game:GetService("RunService").Heartbeat:Connect(antiSlow)
+        antiSlowEnabled = true
+    else
+        if AntiSlow.Text == "No Slow: On" then
+            AntiSlow.Text = "No Slow: Off"
+            if enableAntiSlow then
+                enableAntiSlow:Disconnect()
+                enableAntiSlow = nil
+                antiSlowEnabled = false
+            end
+        end
     end
 end)
--- ANTI SLOW ONCLICK FUNCTION --
 
--- NOCLIP ONCLICK FUNCTION --
+Kill.MouseButton1Click:Connect(function()
+    if not connection then
+        oldCFrame = player.Character.HumanoidRootPart.CFrame
+        Kill.Text = "Unkill"
+
+        connection = game:GetService("RunService").Heartbeat:Connect(killPlayer)
+    else
+        if connection then
+            connection:Disconnect()
+            connection = nil
+        end
+        connection = game:GetService("RunService").Heartbeat:Connect(teleportingToOldCFrame)
+        Kill.Text = "Kill"
+        wait(1)
+        if connection then
+            connection:Disconnect()
+            connection = nil
+        end
+    end
+end)
+AntiLock.MouseButton1Click:Connect(function()
+    if AntiLock.Text == "Anti Lock: Off" and AntiLockMethod.Text == "Anti Lock Method: Regular" then
+        AntiLock.Text = "Anti Lock: On"
+        announce("Anti Lock", "Anti Lock Regular Enabled", 5)
+        toggleAntiLock()
+    elseif
+        AntiLock.Text == "Anti Lock: On" and AntiLockMethod.Text == "Anti Lock Method: Regular" then
+        AntiLock.Text = "Anti Lock: Off"
+        announce("Anti Lock", "Anti Lock Regular Disabled", 5)
+        toggleAntiLock()
+    elseif
+        AntiLock.Text == "Anti Lock: Off" and AntiLockMethod.Text == "Anti Lock Method: Desync" then
+        AntiLock.Text = "Anti Lock: On"
+        announce("Anti Lock", "Anti Lock Desync Enabled", 5)
+        startDeSync()
+    elseif
+        AntiLock.Text == "Anti Lock: On" and AntiLockMethod.Text == "Anti Lock Method: Desync" then
+        AntiLock.Text = "Anti Lock: Off"
+        announce("Anti Lock", "Anti Lock Desync Disabled", 5)
+        stopDeSync()
+    end
+end)
+
+AntiLockMethod.MouseButton1Click:Connect(function()
+    if AntiLockMethod.Text == "Anti Lock Method: Regular" then
+        AntiLockMethod.Text = "Anti Lock Method: Desync"
+    else
+        if AntiLockMethod.Text == "Anti Lock Method: Desync" then
+            AntiLockMethod.Text = "Anti Lock Method: Regular"
+        end
+    end
+end)
+
+AntiLockSettings.MouseButton1Click:Connect(function()
+    if antiLockRadius == 25 then
+        antiLockRadius = 200
+        AntiLockSettings.Text = "Anti Lock Mode: Unhittable"
+    else
+        antiLockRadius = 25
+        AntiLockSettings.Text = "Anti Lock Mode: Normal"
+    end
+end)
+
+ToolReach.MouseButton1Click:Connect(function()
+    local tool = player.Character:FindFirstChildWhichIsA('Tool')
+    if tool then
+        toolReach()
+    else
+        announce("Tool Reach", "Equip A Tool First!", 5)
+    end
+end)
+
+View.MouseButton1Click:Connect(function()
+    if View.Text == "View" then
+        View.Text = "Unview"
+        viewPlayer()
+    else
+        if View.Text == "Unview" then
+            View.Text = "View"
+            game.Workspace:FindFirstChildWhichIsA("Camera").CameraSubject = player.Character.Humanoid
+            announce("View", "Stopped Viewing: " .. TargetPlayer.Name .. "!", 5)
+        end
+    end
+end)
+
+Fly.MouseButton1Click:Connect(function()
+    if not flyGuiLoaded then
+        flyGuiLoaded = true
+
+        loadstring(game:HttpGet("https://pastebin.com/raw/Cqtw8iHD", true))()
+    end
+end)
+
+ForceReset.MouseButton1Click:Connect(function()
+    forceReset()
+end)
+
+GoTo.MouseButton1Click:Connect(function()
+    player.Character.HumanoidRootPart.CFrame = TargetPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 3)
+end)
+
+Bag.MouseButton1Click:Connect(function()
+    if not connection then
+        oldCFrame = player.Character.HumanoidRootPart.CFrame
+        Bag.Text = "Unbag"
+        unequipTools()
+        connection = game:GetService("RunService").Heartbeat:Connect(bagPlayer)
+    else
+        if connection then
+            unequipTools()
+            connection:Disconnect()
+            connection = nil
+        end
+        connection = game:GetService("RunService").Heartbeat:Connect(teleportingToOldCFrame)
+        Bag.Text = "Bag"
+        wait(1)
+        if connection then
+            connection:Disconnect()
+            connection = nil
+        end
+    end
+end)
+
+
+AntiStomp.MouseButton1Click:Connect(function()
+    if AntiStomp.Text == "No Stomp: Off" then
+        AntiStomp.Text = "No Stomp: On"
+        antiStomp()
+        antiStompEnabled = true
+    else
+        if AntiStomp.Text == "No Stomp: On" then
+            AntiStomp.Text = "No Stomp: Off"
+            antiStompStop()
+            antiStompEnabled = false
+        end
+    end
+end)
+
 NoClip.MouseButton1Click:Connect(function()
     if NoClip.Text == "Noclip: Off" then
         NoClip.Text = "Noclip: On"
@@ -1756,180 +1829,107 @@ NoClip.MouseButton1Click:Connect(function()
         end
     end
 end)
--- NOCLIP ONCLICK FUNCTION --
 
--- TOOL REACH ONCLICK FUNCTION --
-ToolReach.MouseButton1Click:Connect(function()
-    if player.Character:FindFirstChildWhichIsA('Tool') then
-        toolReach()
-        announce('Tool Reach', "Tool Reach Successful!", 3)
+AutoEat.MouseButton1Click:Connect(function()
+    if AutoEat.Text == "Auto Heal: Off" then
+        AutoEat.Text = "Auto Heal: On"
+        autoHealConnection = game:GetService("RunService").Heartbeat:Connect(autoHeal)
+        autoHealEnabled = true
     else
-        announce('Tool Reach', "Equip A Tool First!", 3)
-    end
-end)
--- TOOL REACH ONCLICK FUNCTION --
+        if AutoEat.Text == "Auto Heal: On" then
+            AutoEat.Text = "Auto Heal: Off"
+            if autoHealConnection then
+                autoHealConnection:Disconnect()
+                autoHealConnection = nil
+                autoHealEnabled = false
 
--- HIDE USER ONCLICK FUNCTION --
-HideUser.MouseButton1Click:Connect(function()
-    if
-        HideUser.Text == "Hide User: Off" then
-        hideUserActive = true
-        HideUser.Text = "Hide User: On"
-        hideUser()
-    else
-        if HideUser.Text == "Hide User: On" then
-            hideUserActive = false
-            HideUser.Text = "Hide User: Off"
-        end
-    end
-end)
--- HIDE USER ONCLICK FUNCTION --
-
--- FORCE RESET ONCLICK FUNCTION --
-ForceReset.MouseButton1Click:Connect(function()
-    forceReset()
-end)
--- FORCE RESET ONCLICK FUNCTION --
-
--- ANTI STOMP ONCLICK FUNCTION --
-AntiStomp.MouseButton1Click:Connect(function()
-    if AntiStomp.Text == "No Stomp: Off" then
-        AntiStomp.Text = "No Stomp: On"
-        antiStompActive = true
-        antiStomp()
-    else
-        if AntiStomp.Text == "No Stomp: On" then
-            AntiStomp.Text = "No Stomp: Off"
-            antiStompActive = false
-            antiStompStop()
-        end
-    end
-end)
--- ANTI STOMP ONCLICK FUNCTION --
-
--- AUTO BLOCK ONCLICK FUNCTION --
-AutoBlock.MouseButton1Click:Connect(function()
-    if AutoBlock.Text == "Auto Block: Off" then
-        AutoBlock.Text = "Auto Block: On"
-        autoBlockEnabled = true
-        autoBlock()
-    else
-        if AutoBlock.Text == "Auto Block: On" then
-            AutoBlock.Text = "Auto Block: Off"
-            autoBlockEnabled = false
-        end
-    end
-end)
--- AUTO BLOCK ONCLICK FUNCTION --
-
--- ANTI LOCK ONCLICK FUNCTION --
-AntiLock.MouseButton1Click:Connect(function()
-    if AntiLock.Text == "Anti Lock: Off" and AntiLockMethod.Text == "Anti Lock Method: Regular" then
-        AntiLock.Text = "Anti Lock: On"
-        announce("Anti Lock", "Anti Lock Regular Enabled", 5)
-        toggleAntiLock()
-    elseif
-        AntiLock.Text == "Anti Lock: On" and AntiLockMethod.Text == "Anti Lock Method: Regular" then
-            AntiLock.Text = "Anti Lock: Off"
-            announce("Anti Lock", "Anti Lock Regular Disabled", 5)
-            toggleAntiLock()
-        elseif
-            AntiLock.Text == "Anti Lock: Off" and AntiLockMethod.Text == "Anti Lock Method: Desync" then
-            AntiLock.Text = "Anti Lock: On"
-            announce("Anti Lock", "Anti Lock Desync Enabled", 5)
-            startDeSync()
-        elseif
-            AntiLock.Text == "Anti Lock: On" and AntiLockMethod.Text == "Anti Lock Method: Desync" then
-            AntiLock.Text = "Anti Lock: Off"
-            announce("Anti Lock", "Anti Lock Desync Disabled", 5)
-            stopDeSync()
-        end
-    end)
--- ANTI LOCK ONCLICK FUNCTION --
-
--- ANTI LOCK METHOD ONCLICK FUNCTION --
-AntiLockMethod.MouseButton1Click:Connect(function()
-    if AntiLockMethod.Text == "Anti Lock Method: Regular" then
-        AntiLockMethod.Text = "Anti Lock Method: Desync"
-    else
-        if AntiLockMethod.Text == "Anti Lock Method: Desync" then
-            AntiLockMethod.Text = "Anti Lock Method: Regular"
-        end
-    end
-end)
--- ANTI LOCK METHOD ONCLICK FUNCTION --
-
--- BAG ONCLICK FUNCTION --
-Bag.MouseButton1Click:Connect(function()
-    if Bag.Text == "Bag" then
-        Bag.Text = "Unbag"
-        bag()
-    else
-        if Bag.Text == "Unbag" then
-            if connection then
-                connection:Disconnect()
-                wait(0.5)
-                player.Character.HumanoidRootPart.CFrame = savedCFrame
-                Bag.Text = "Bag"
+                connection = game:GetService("RunService").Heartbeat:Connect(teleportingToOldCFrame)
+                wait(1)
+                if connection then
+                    connection:Disconnect()
+                    connection = nil
+                end
             end
         end
     end
 end)
 
--- FLY ONCLICK FUNCTION --
-Fly.MouseButton1Click:Connect(function()
-    if not FlyGuiLoaded then
-        FlyGuiLoaded = true
-        loadstring(game:HttpGet("https://pastebin.com/raw/Cqtw8iHD", true))()
+HideUser.MouseButton1Click:Connect(function()
+    if HideUser.Text == "Hide User: Off" then
+        HideUser.Text = "Hide User: On"
+        hideUser()
+        hideUserEnabled = true
+    else
+        if HideUser.Text == "Hide User: On" then
+            HideUser.Text = "Hide User: Off"
+            equipMask()
+            useWeapon()
+            unequipTools()
+            hideUserEnabled = false
+        end
     end
 end)
--- FLY ONCLICK FUNCTION --
 
---ANTI LOCK MODE ONCLICK FUNCTION--
-AntiLockSettings.MouseButton1Click:Connect(function()
-    if antiLockRadius == 25 then
-        antiLockRadius = 200
-        AntiLockSettings.Text = "Anti Lock Mode: Unhittable"
+Bring.MouseButton1Click:Connect(function()
+    if not connection then
+        oldCFrame = player.Character.HumanoidRootPart.CFrame
+        Bring.Text = "Unbring"
+
+        connection = game:GetService("RunService").Heartbeat:Connect(bringPlayer)
     else
-        antiLockRadius = 25
-        AntiLockSettings.Text = "Anti Lock Mode: Normal"
+        if connection then
+            unequipTools()
+            connection:Disconnect()
+            connection = nil
+        end
+        connection = game:GetService("RunService").Heartbeat:Connect(teleportingToOldCFrame)
+        Bring.Text = "Bring"
+        wait(1)
+        if connection then
+            connection:Disconnect()
+            connection = nil
+        end
+    end
+end)
+
+StealAudio.MouseButton1Click:Connect(function()
+    stealAudio()
+end)
+
+SpamCall.MouseButton1Click:Connect(function()
+    if SpamCall.Text == "Spam Call: Off" then
+        SpamCall.Text = "Spam Call: On"
+        spamCallConnection = game:GetService("RunService").Heartbeat:Connect(spamCallPlayer)
+    else
+        if SpamCall.Text == "Spam Call: On" then
+            SpamCall.Text = "Spam Call: Off"
+            if spamCallConnection then
+                spamCallConnection:Disconnect()
+                spamCallConnection = nil
+            end
+        end
     end
 end)
 
 local function onRespawn()
-    if antiSlowActive then
-        antiSlowStart()
-    else
-        antiSlowStop()
+    if antiSlowEnabled then
+        antiSlow()
     end
-
-    if antiStompActive then
+    if antiStompEnabled then
         antiStomp()
-    else
-        antiStompStop()
     end
-
-    if autoBlockEnabled then
-        autoBlock()
+    if autoHealEnabled then
+        game:GetService("RunService").Heartbeat:Connect(autoHeal)
     end
-
-    if hideUserActive then
-        local player = game.Players.LocalPlayer
-        local character = player.Character or player.CharacterAdded:Wait()
-
-        while not character:FindFirstChild("Humanoid") or not character:FindFirstChild("HumanoidRootPart") do
+    if hideUserEnabled then
+        while not player.Character:FindFirstChild("HumanoidRootPart") do
             wait()
         end
-
         hideUser()
     end
 end
 
--- Connect to CharacterAdded to handle respawns
 player.CharacterAdded:Connect(onRespawn)
-
--- BUTTONS ON CLICK FUNCTIONS --
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- QUICK TP ONCLICK FUNCTIONS --
 Bank.MouseButton1Click:Connect(function()
@@ -1992,5 +1992,7 @@ SafeZone.MouseButton1Click:Connect(function()
     player.Character.HumanoidRootPart.CFrame = CFrame.new(0, -299, 0)
 end)
 -- QUICK TP ONCLICK FUNCTIONS --
+
 createVoidBlock()
+antiTrampoline()
 initialCheckForMods()
