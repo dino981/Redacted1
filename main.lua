@@ -905,7 +905,7 @@ local function hasBag()
 end
 
 local function buyBag()
-    local bagClickDetector = game:GetService("Workspace").Ignored.Shop.Others["[BrownBag] - $250"].ClickDetector
+    local bagClickDetector = game:GetService("Workspace").Ignored.Shop.Others["[BrownBag] - $275"].ClickDetector
     local bagLocation = bagClickDetector.Parent.Head.Position
 
     player.Character.HumanoidRootPart.CFrame = CFrame.new(bagLocation)
